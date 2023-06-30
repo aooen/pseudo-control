@@ -4,8 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pseudo-control-client</title>
+    <style>
+      * { box-sizing: border-box; }
+      html, body { min-width: 480px; margin: 0; }
+      header { position: relative; display: flex; align-items: center; height: 50px; padding: 0 20px; box-shadow: 0 0 3px 0px #ccc; }
+      header > ul { display: flex; height: 100%; list-style: none; }
+      header > ul > li { position: relative; width: 100px; height: 100%; margin: 0 10px; }
+      header > ul > li:hover { background-color: #eee; }
+      header > ul > li div { display: flex; align-items: center; height: 50px; padding: 0 10px; }
+      .menu { position: absolute; display: none; width: 100px; padding: 8px; background-color: rgba(255, 255, 255, 0.8); list-style: none; }
+      li:hover .menu { display: block; }
+      main { display: flex; align-items: center; width: 100%; height: 400px; background: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df') no-repeat center center / cover; }
+      #widget { width: 400px; padding: 20px 8px; margin-left: 20px; background-color: rgba(255, 255, 255, 0.8); }
+    </style>
   </head>
   <body>
+    <header>
+      Demo site
+      <ul>
+        <li>
+          <div>Company</div>
+          <ul class="menu">
+            <li><a href="#">Intro</a></li>
+            <li><a href="#">Vision</a></li>
+            <li><a href="#">Career</a></li>
+          </ul>
+        </li>
+        <li>
+          <div>Product</div>
+          <ul class="menu">
+            <li><a href="#">Camera</a></li>
+            <li><a href="#">Mouse</a></li>
+            <li><a href="#">Printer</a></li>
+          </ul>
+        </li>
+        <li>
+          <div>Store</div>
+          <ul class="menu">
+            <li><a href="#">e-Store</a></li>
+            <li><a href="#">Showroom</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <main>
+      <div id="widget">
+        <div><button id="logging_button">Click to logging</button></div>
+      </form>
+    </main>
     <script type="module" src="/src/main.ts"></script>
     <script>
       window.addEventListener('load', () => {
@@ -17,7 +63,11 @@
 
         const indicator = document.createElement('small')
         indicator.textContent = 'identification key for technical support: ' + remoteControlKey
-        document.body.appendChild(indicator)
+        document.getElementById('widget').appendChild(indicator)
+
+        document.getElementById('logging_button').onclick = () => {
+          window.pseudoControl('log', 'you trigged log! current time: ' + new Date())
+        }
       })
     </script>
   </body>
