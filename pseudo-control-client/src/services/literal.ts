@@ -4,7 +4,7 @@ export class LiteralService {
   locale: typeof localeType | Record<string, never> = {}
 
   async init() {
-    this.locale = await (() => {
+    this.locale = (await (() => {
       switch (window.navigator.language) {
         case 'ko-KR':
         case 'ko-kr':
@@ -13,7 +13,7 @@ export class LiteralService {
         default:
           return import('~/assets/locales/en-US.json')
       }
-    })()
+    })()).default
   }
 
   text(key: keyof typeof localeType) {
