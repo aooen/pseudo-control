@@ -1,6 +1,14 @@
 {
   "name": "pseudo-control-client",
-  "private": true,
+  "description": "WebRTC-based Web Client screen remote control",
+  "keywords": ["WebRTC", "Screen share", "Remote control"],
+  "author": "Hakyeon Kim <khy@aooen.com> (https://aooen.com)",
+  "homepage": "https://github.com/aooen/pseudo-control",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aooen/pseudo-control"
+  },
+  "license": "MIT",
   "version": "0.0.1",
   "type": "module",
   "scripts": {

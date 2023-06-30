@@ -1,4 +1,5 @@
 # pseudo-control-client
+pseudo-control-client is part of pseudo-control. Please see https://github.com/aooen/pseudo-control.
 
 ## Initialize (example)
 1. Build pseudo-control-client.
@@ -8,6 +9,7 @@
   ```
 2. Embed bundled script file, then run `ready` command when window loaded.
   ```html
+  <link rel="stylesheet" href="~~~/dist/style.css" />
   <script src="~~~/dist/pseudo-control-client.js"></script>
   <script>
     window.addEventListener('load', () => {

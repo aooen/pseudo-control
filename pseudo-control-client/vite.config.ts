@@ -22,4 +22,7 @@ export default defineConfig({
       name: 'pseudo-control-client',
     },
   },
+  define: {
+    'process.env': {}
+  }
 })
