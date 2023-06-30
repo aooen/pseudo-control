@@ -1,4 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function log(_message: string) {
-  // TODO
+import socket from '~/services/socket'
+
+export function log(message: string) {
+  socket.log(message)
 }
