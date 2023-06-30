@@ -1,4 +1,6 @@
 # pseudo-control
+![Introduce video](assets/introduce_en-US.webp)
+
 [한국어(Korean)](README.ko-KR.md)
 
 Remove `technical support access` settings from your product.

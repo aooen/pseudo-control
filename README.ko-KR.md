@@ -1,4 +1,6 @@
 # pseudo-control
+![안내영상](assets/introduce_ko-KR.webp)
+
 제품에서 `기술 지원 액세스 허용` 설정을 제거하세요.
 
 pseudo-control는 WebRTC 기반의 Web Client 화면 원격 제어 라이브러리입니다. 더 이상 기술 지원을 위해 제품에 "인가된" 백도어를 만들지 마시기 바랍니다.
