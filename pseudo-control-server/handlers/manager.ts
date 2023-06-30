@@ -12,7 +12,7 @@ export function detachManagerHandler(io: Server, participantMap: Map<string, str
 
       const roomId = UUID()
 
-      socket.to(clientId).emit('session_request', { sender: socket.id, privateKey, roomId })
+      socket.to(clientId).emit('session_request', { privateKey, roomId })
       socket.emit('session_ready', { token: createToken(roomId, 'manager') })
       socket.join(publicKey)
     })

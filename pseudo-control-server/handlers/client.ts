@@ -13,8 +13,8 @@ export function detachClientHandler(io: Server, participantMap: Map<string, stri
       return
     }
 
-    socket.on('session_accept', ({ sender, roomId }) => {
-      socket.to(sender).emit('session_accept')
+    socket.on('session_accept', ({ roomId }) => {
+      socket.to(publicKey).emit('session_accept')
       socket.emit('session_ready', { token: createToken(roomId, 'client') })
     })
 
@@ -23,6 +23,8 @@ export function detachClientHandler(io: Server, participantMap: Map<string, stri
     })
 
     socket.on('disconnect', () => {
+      socket.to(publicKey).emit('client_disconnect')
+      socket.to(publicKey).socketsLeave(publicKey)
       participantMap.delete(publicKey)
     })
 

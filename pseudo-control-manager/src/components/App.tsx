@@ -34,6 +34,10 @@ function App() {
       logger.current.textContent = `${message}\n${logger.current.textContent}`
     })
 
+    socket.current.on('client_disconnect', () => {
+      location.reload()
+    })
+
     socket.current.connect()
   }, [])
 

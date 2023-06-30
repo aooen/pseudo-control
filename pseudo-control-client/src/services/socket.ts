@@ -17,9 +17,9 @@ export class SocketService {
       },
     })
 
-    socket.on('session_request', ({ sender, privateKey, roomId }) => {
+    socket.on('session_request', ({ privateKey, roomId }) => {
       if (privateKey !== key.privateKey) { return }
-      interaction.showAcceptModal(() => this.sessionAccept(sender, roomId))
+      interaction.showAcceptModal(() => this.sessionAccept(roomId))
     })
 
     socket.on('session_ready', ({ token }) => {
@@ -41,8 +41,8 @@ export class SocketService {
     this.socket = socket
   }
 
-  sessionAccept(sender: string, roomId: string) {
-    this.socket?.emit('session_accept', { sender, roomId })
+  sessionAccept(roomId: string) {
+    this.socket?.emit('session_accept', { roomId })
   }
 
   log(message: string) {
