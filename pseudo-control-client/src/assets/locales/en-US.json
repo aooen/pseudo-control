@@ -1,0 +1,6 @@
+{
+  "accept_modal.title": "Remote control request",
+  "accept_modal.description": "The site administrator has requested a remote control from you for technical support. Remote control is literally the act of handing over authority to the other party to do \"everything\". You should only accept the request if you requested technical support and be confident that the other party is the site administrator. Would you like to accept?",
+  "accept_modal.accept": "Accept",
+  "accept_modal.decline": "Decline"
+}

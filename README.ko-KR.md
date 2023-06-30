@@ -17,6 +17,7 @@ pseudo-control는 WebRTC 기반의 Web Client 화면 원격 제어 라이브러�
 - 네트워크 요청 캡쳐
 
 ## 문서 (English)
+- [클라이언트](pseudo-control-client/README.md)
 
 ## 라이선스
 [MIT 라이선스](LICENSE)

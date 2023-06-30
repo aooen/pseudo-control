@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pseudo-control-client</title>
+  </head>
+  <body>
+    <script type="module" src="/src/main.ts"></script>
+    <script>
+      window.addEventListener('load', () => {
+        const remoteControlKey = window.pseudoControl('ready', {
+          host: 'localhost',
+          controlPort: 26610,
+          sessionPort: 26611
+        })
+
+        const indicator = document.createElement('small')
+        indicator.textContent = 'identification key for technical support: ' + remoteControlKey
+        document.body.appendChild(indicator)
+      })
+    </script>
+  </body>
+</html>

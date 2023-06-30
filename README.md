@@ -19,6 +19,7 @@ These functions are not provided at this stage, as they must be accompanied by a
 - Capture network activity
 
 ## Documentation
+- [Client](pseudo-control-client/README.md)
 
 ## License
 [MIT License](LICENSE)
