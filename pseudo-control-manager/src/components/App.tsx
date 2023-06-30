@@ -6,6 +6,7 @@ import styles from './App.module.scss'
 
 function App() {
   const socket = useRef<Socket>()
+  const logger = useRef<HTMLTextAreaElement>(null)
   const [track, setTrack] = useState<Track>()
   const [key, setKey] = useState('')
 
@@ -25,6 +26,11 @@ function App() {
       room.once(RoomEvent.TrackSubscribed, (track) => {
         setTrack(track)
       })
+    })
+
+    socket.current.on('log', message => {
+      if (!logger.current) { return }
+      logger.current.textContent = `${message}\n${logger.current.textContent}`
     })
 
     socket.current.connect()
@@ -47,15 +53,21 @@ function App() {
         />
         <button onClick={sendSessionRequest}>request session</button>
       </div>
-      <div className={styles.videoWrapper}>
-        { track && (
+      { track && (
+        <div className={styles.sessionWrapper}>
+          <textarea
+            ref={logger}
+            className={styles.logger}
+            readOnly
+            placeholder="Log messages are written here"
+          ></textarea>
           <VideoRenderer
             className={styles.video}
             track={track}
             isLocal={false}
           />
-        ) }
-      </div>
+        </div>
+      ) }
     </>
   )
 }
