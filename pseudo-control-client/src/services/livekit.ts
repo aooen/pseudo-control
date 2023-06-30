@@ -30,8 +30,11 @@ export class LiveKitService {
       preferCurrentTab: true,
     })
 
-    for await (const track of stream.getTracks()) {
+    for await (const track of stream.getVideoTracks()) {
       await this.room.localParticipant.publishTrack(track)
+      track.addEventListener('ended', () => {
+        this.disconnect()
+      })
     }
   }
 
