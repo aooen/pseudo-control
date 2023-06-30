@@ -1,8 +1,39 @@
+.wrapper {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  max-width: 100%;
+  overflow: auto;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px 3px rgba(0, 0, 0, 0.8);
+}
+
 .modal {
-  display: fixed;
-  top: 200px;
-  width: 600px;
+  width: 400px;
   padding: 20px;
   margin: 0 auto;
-  background-color: white;
+  background-color: #f7f7f7;
+}
+
+.title {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+
+.description {
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    padding: 6px 10px;
+    margin-left: 12px;
+  }
 }
