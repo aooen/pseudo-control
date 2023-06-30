@@ -2,6 +2,7 @@ import { io, type Socket } from 'socket.io-client'
 import interaction from './interaction'
 import key from './key'
 import livekit from './livekit'
+import domEvent from './domEvent'
 
 export class SocketService {
   private socket: Socket | null = null
@@ -23,6 +24,16 @@ export class SocketService {
 
     socket.on('session_ready', ({ token }) => {
       livekit.start(token)
+    })
+
+    socket.on('click', ({ privateKey, x, y }) => {
+      if (privateKey !== key.privateKey) { return }
+      domEvent.click(x, y)
+    })
+
+    socket.on('mousemove', ({ privateKey, x, y }) => {
+      if (privateKey !== key.privateKey) { return }
+      domEvent.mousemove(x, y)
     })
 
     socket.connect()

@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, useMemo } from 'react'
 import { io, type Socket } from 'socket.io-client'
 import { Room, RoomEvent, type Track } from 'livekit-client'
 import { VideoRenderer } from '@livekit/react-core'
+import _ from 'lodash'
 import styles from './App.module.scss'
 
 function App() {
@@ -42,6 +43,32 @@ function App() {
     socket.current.emit('session_request', { publicKey, privateKey })
   }, [key])
 
+  const handleScreenClick = useCallback((event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLDivElement
+    const targetX = event.clientX - target.offsetLeft
+    const targetY = event.clientY - target.offsetTop
+
+    const x = targetX / target.clientWidth
+    const y = targetY / target.clientHeight
+
+    const [publicKey, privateKey] = key.split('-')
+    socket.current?.emit('click', { publicKey, privateKey, x, y })
+  }, [key])
+
+  const handleScreenMouseMove = useMemo(() => (
+    _.throttle((event: React.MouseEvent<HTMLDivElement>) => {
+      const target = event.target as HTMLDivElement
+      const targetX = event.clientX - target.offsetLeft
+      const targetY = event.clientY - target.offsetTop
+
+      const x = targetX / target.clientWidth
+      const y = targetY / target.clientHeight
+
+      const [publicKey, privateKey] = key.split('-')
+      socket.current?.emit('mousemove', { publicKey, privateKey, x, y })
+    }, 200, { leading: true, trailing: true })
+  ), [key])
+
   return (
     <>
       <div className={styles.control}>
@@ -50,8 +77,9 @@ function App() {
           value={key}
           placeholder="key"
           onChange={e => { setKey(e.target.value) }}
+          disabled={!!track}
         />
-        <button onClick={sendSessionRequest}>request session</button>
+        <button onClick={sendSessionRequest} disabled={!!track}>request session</button>
       </div>
       { track && (
         <div className={styles.sessionWrapper}>
@@ -61,11 +89,16 @@ function App() {
             readOnly
             placeholder="Log messages are written here"
           ></textarea>
-          <VideoRenderer
-            className={styles.video}
-            track={track}
-            isLocal={false}
-          />
+          <div
+            onClick={handleScreenClick}
+            onMouseMove={handleScreenMouseMove}
+          >
+            <VideoRenderer
+              className={styles.video}
+              track={track}
+              isLocal={false}
+            />
+          </div>
         </div>
       ) }
     </>

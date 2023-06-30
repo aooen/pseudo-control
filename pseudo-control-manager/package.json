@@ -12,11 +12,13 @@
   "dependencies": {
     "@livekit/react-core": "^1.1.0",
     "livekit-client": "^1.11.4",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "socket.io-client": "^4.7.1"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.195",
     "@types/node": "^20.3.2",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",

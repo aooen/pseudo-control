@@ -16,5 +16,19 @@ export function detachManagerHandler(io: Server, participantMap: Map<string, str
       socket.emit('session_ready', { token: createToken(roomId, 'manager') })
       socket.join(publicKey)
     })
+
+    socket.on('click', ({ publicKey, privateKey, x, y }) => {
+      const clientId = participantMap.get(publicKey)
+      if (!clientId) { return }
+
+      socket.to(clientId).emit('click', { privateKey, x, y })
+    })
+
+    socket.on('mousemove', ({ publicKey, privateKey, x, y }) => {
+      const clientId = participantMap.get(publicKey)
+      if (!clientId) { return }
+
+      socket.to(clientId).emit('mousemove', { privateKey, x, y })
+    })
   })
 }
