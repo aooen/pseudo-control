@@ -2,7 +2,7 @@
 pseudo-control-client is part of pseudo-control. Please see https://github.com/aooen/pseudo-control.
 
 ## Initialize (example)
-1. Build pseudo-control-client.
+1. Build pseudo-control-client. (or use `https://www.unpkg.com/pseudo-control-client/dist/~~~` instead)
   ```sh
   yarn install
   yarn build
